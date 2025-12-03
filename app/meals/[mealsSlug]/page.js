@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import classes from './page.module.css'
 import { getMeal } from '@/lib/meals'
@@ -7,6 +8,8 @@ export default async function MealDetailsPage({ params }) {
     const {mealsSlug} = await params
     const meal = getMeal(mealsSlug)
 
+    if(!meal){notFound()}
+
     meal.instructions = meal.instructions.replace(/\n/g, '<br />')
 
     return <>
@@ -14,7 +17,8 @@ export default async function MealDetailsPage({ params }) {
             <div className={classes.image}>
                 <Image fill
                     src={meal.image} 
-                    alt={meal.title} />
+                    alt={meal.title}
+                />
             </div>
             <div className={classes.headerText}>
                 <h1>{meal.title}</h1>
