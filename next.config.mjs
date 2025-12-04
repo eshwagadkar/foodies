@@ -6,6 +6,16 @@ const nextConfig = {
       bodySizeLimit: '10mb',
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'eshwa-gadkar-next-js-app-images.s3.ap-south-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 }
 
-export default nextConfig;
+export default nextConfig
