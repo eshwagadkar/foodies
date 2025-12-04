@@ -10,7 +10,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'eshwa-gadkar-next-js-app-images.s3.ap-south-1.amazonaws.com',
+        hostname: process.env.NEXT_PUBLIC_IMAGE_DOMAIN,
         port: '',
         pathname: '/**',
       },
