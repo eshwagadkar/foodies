@@ -1,7 +1,29 @@
-import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import classes from './page.module.css'
+import { notFound } from 'next/navigation'
+
 import { getMeal } from '@/lib/meals'
+import classes from './page.module.css'
+
+export async function generateMetadata({ params }) {
+
+    const {mealsSlug} = await params
+    const meal = getMeal(mealsSlug)
+
+    if (!meal) { 
+        notFound()
+        
+        // OR:
+        // return {
+        //     title: 'Meal Not Found',
+        //     description: 'This meal does not exist.'
+        // }
+    }
+
+    return {
+        title: meal.title,
+        description: meal.summary
+    }
+}
 
 export default async function MealDetailsPage({ params }) {
 
